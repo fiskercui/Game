@@ -2,12 +2,14 @@ package com.road.command;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.road.GamePlayer;
+import com.road.dota.event.GameEventType;
 import com.road.dota.object.inf.IGamePlayer;
 import com.road.pb.wrap.UserMsgProtoWrap;
 import com.road.pitaya.chat.ChatUserMgr;
 import com.road.pitaya.command.AbstractUserCmd;
 import com.road.pitaya.command.GamePlayerMgr;
 import com.road.pitaya.command.ICode;
+import com.road.pitaya.event.EventArg;
 import com.road.pitaya.net.CommonMessage;
 import com.road.pitaya.net.IClientConnection;
 
@@ -33,12 +35,15 @@ public class UserLogin extends AbstractUserCmd
             System.out.println(userMsgWrap.getUserId());
             System.out.println(userMsgWrap.getName());
             
-            IGamePlayer player = new GamePlayer(userMsgWrap.getUserId(), userMsgWrap.getName());
+            GamePlayer player = new GamePlayer(userMsgWrap.getUserId(), userMsgWrap.getName());
             player.setClientConnection(conn);
             conn.setHolder(player);
             GamePlayerMgr.getInstance().addGamePlayer(player.getUserID(), player);
             
-            ChatUserMgr.getInstance().addUser(player.getUserID(), player);
+            player.addListener(GameEventType.UpdateChatServer.getValue(),ChatUserMgr.getInstance());
+            player.notifyListners(new EventArg(this, GameEventType.UpdateChatServer.getValue(), player.getUserID()));
+//            
+//            ChatUserMgr.getInstance().addUser(player.getUserID(), player);
             
             UserMsgProtoWrap.Builder msg = UserMsgProtoWrap.newBuilder();
             msg.setName("weihua");

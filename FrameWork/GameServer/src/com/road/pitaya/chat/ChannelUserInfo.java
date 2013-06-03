@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.road.dota.object.inf.IGamePlayer;
+import com.road.pitaya.command.GamePlayerMgr;
 
 /**
  * 聊天用户管理器中的用户基本信息
@@ -32,18 +33,21 @@ public class ChannelUserInfo
      */
     private int nearChannelId = 0;
 
-    public ChannelUserInfo(IGamePlayer player)
+    private boolean initSuccess  = false;
+    public ChannelUserInfo(int userId)
     {
-        refreshUserInfo(player);
+        refreshUserInfo(userId);
     }
 
-    public void refreshUserInfo(IGamePlayer player)
+    public void refreshUserInfo(int  playerId)
     {
+        IGamePlayer player = GamePlayerMgr.getInstance().getGamePlayer(playerId);
         if (player == null)
         {
             LOGGER.error("cannot find player");
             return;
         }
+        this.initSuccess = true;
         this.userId = player.getUserID();
         this.worldChannelId = player.getChannelID(ChannelType.CHANNEL_WORLD);
         this.clawChannelId = player.getChannelID(ChannelType.CHANNEL_CLAW);
@@ -69,5 +73,12 @@ public class ChannelUserInfo
     {
         return nearChannelId;
     }
+
+    public boolean isInitSuccess()
+    {
+        return initSuccess;
+    }
+
+
 
 }

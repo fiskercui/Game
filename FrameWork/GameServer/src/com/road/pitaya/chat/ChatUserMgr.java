@@ -6,7 +6,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.road.dota.object.inf.IGamePlayer;
+import com.road.pitaya.event.EventArg;
+import com.road.pitaya.event.IEventListener;
 
 /**
  * 聊天用户管理 用户登入登出的时候，需要清理对应的id
@@ -14,7 +15,7 @@ import com.road.dota.object.inf.IGamePlayer;
  * @author weihua.cui
  * 
  */
-public class ChatUserMgr
+public class ChatUserMgr implements IEventListener
 {
     private static final Logger LOGGER = LoggerFactory
             .getLogger(ChatUserMgr.class);
@@ -30,17 +31,14 @@ public class ChatUserMgr
      * @param player
      * @return
      */
-    public boolean addUser(int id, IGamePlayer player)
+    public boolean addUser(int id)
     {
-        if (player == null)
-        {
-            LOGGER.error("player null");
-            return false;
-        }
         // 先删除原有信息
         delUser(id);
 
-        ChannelUserInfo userInfo = new ChannelUserInfo(player);
+        ChannelUserInfo userInfo = new ChannelUserInfo(id);
+        if(userInfo.isInitSuccess() == false)
+            return false;
         mapPlayer.put(id, userInfo);
         ChannelManager.getInstance().addUser(ChannelType.CHANNEL_WORLD,
                 userInfo.getWorldChannelId(), userInfo.getUserId());
@@ -83,5 +81,12 @@ public class ChatUserMgr
     public static ChatUserMgr getInstance()
     {
         return LazyHolder.INSTANCE;
+    }
+
+    @Override
+    public void onEvent(EventArg arg)
+    {
+        int userId = (int) arg.getData();
+        addUser(userId);
     }
 }

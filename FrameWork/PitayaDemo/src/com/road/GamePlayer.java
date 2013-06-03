@@ -10,9 +10,10 @@ import com.road.pitaya.chat.ChannelType;
 import com.road.pitaya.command.SelfDrivenTaskQueue;
 import com.road.pitaya.command.UserCmdTask;
 import com.road.pitaya.component.ComponentManager;
+import com.road.pitaya.event.EventSource;
 import com.road.pitaya.net.IClientConnection;
 
-public class GamePlayer implements IGamePlayer
+public class GamePlayer extends EventSource implements IGamePlayer
 {
     @SuppressWarnings("unused")
     private String name = null;
