@@ -91,7 +91,7 @@ public class ChannelManager
      * @param Userid
      *            用户id
      * @return
-     */
+     */e
     public boolean addUser(byte channelType, int channelId, int userId)
     {
         ChannelService channelService = mapChannelService.get(channelType);
