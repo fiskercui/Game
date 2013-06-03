@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<network>
+	</network>
+	<database>
+		<db name="MainDB">
+			<url>jdbc:mysql://localhost:3306/db_ddw?characterEncoding=utf-8&amp;autoReconnect=true</url>
+			<username>root</username>
+			<password>root</password>
+		</db>
+		<db name="LogDB">
+			<url>jdbc:mysql://localhost:3306/db_ddw?characterEncoding=utf-8&amp;autoReconnect=true</url>
+			<username>root</username>
+			<password>root</password>
+		</db>
+	</database>
+	<cache>
+	</cache>
+</config>

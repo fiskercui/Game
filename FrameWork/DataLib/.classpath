@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CommonUtil"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Pitaya"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/ammentos_1.3.7.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/bonecp-0.7.1-fixed.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/ehcache-core-2.6.6.jar" sourcepath="G:/ehcache-2.6.6-distribution/ehcache-2.6.6/src"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/ehcache-terracotta-2.6.6.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/google-collections-1.0.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/logback-classic-1.0.9.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/logback-core-1.0.9.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/mysql-connector-java-5.1.12-bin.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="/CommonLib/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
