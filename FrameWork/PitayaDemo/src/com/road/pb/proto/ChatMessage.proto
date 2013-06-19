@@ -1,0 +1,16 @@
+package com.road.proto;
+option java_package = "com.road.pb";
+option java_outer_classname = "ChatMsgProto";
+
+message ChatMsg{
+	//ChatType 1v1 or 1vn
+	required int32 channelType = 1;	
+	//sendName
+	optional string sendName = 2;
+	//recvId 1vn Ignore
+	optional int32 recvId = 3;
+	//recvIdList     gateway uses
+	repeated int32 recvIdList = 4;
+	//message body
+	optional string message = 5;
+}
